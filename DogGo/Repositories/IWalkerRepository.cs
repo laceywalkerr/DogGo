@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Doggo.Models;
+using DogGo.Models;
 using Microsoft.Data.SqlClient;
-
 
 namespace DogGo.Repositories
 {
-    public class IWalkerRepository
+    public interface IWalkerRepository
     {
         List<Walker> GetAllWalkers();
         Walker GetWalkerById(int id);

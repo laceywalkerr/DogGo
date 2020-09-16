@@ -1,0 +1,7 @@
+C:\Users\Lacey\workspace\DogGo\DogGo\obj\Debug\netcoreapp3.1\DogGo.csprojAssemblyReference.cache
+C:\Users\Lacey\workspace\DogGo\DogGo\obj\Debug\netcoreapp3.1\DogGo.AssemblyInfoInputs.cache
+C:\Users\Lacey\workspace\DogGo\DogGo\obj\Debug\netcoreapp3.1\DogGo.AssemblyInfo.cs
+C:\Users\Lacey\workspace\DogGo\DogGo\obj\Debug\netcoreapp3.1\DogGo.csproj.CoreCompileInputs.cache
+C:\Users\Lacey\workspace\DogGo\DogGo\obj\Debug\netcoreapp3.1\DogGo.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Lacey\workspace\DogGo\DogGo\obj\Debug\netcoreapp3.1\DogGo.RazorAssemblyInfo.cache
+C:\Users\Lacey\workspace\DogGo\DogGo\obj\Debug\netcoreapp3.1\DogGo.RazorAssemblyInfo.cs

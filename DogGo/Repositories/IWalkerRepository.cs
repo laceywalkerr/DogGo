@@ -8,7 +8,7 @@ using Microsoft.Data.SqlClient;
 
 namespace DogGo.Repositories
 {
-    public class IWalkerRepository
+    public interface IWalkerRepository
     {
         List<Walker> GetAllWalkers();
         Walker GetWalkerById(int id);

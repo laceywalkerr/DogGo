@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Doggo.Models;
+using DogGo.Models;
 using Microsoft.Data.SqlClient;
 
 

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DogGo.Models;
+using DogGo.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DogGo.Controllers
 {
-    public class WalkersController : Controller
+    public class WalkersController : Controller 
+    { 
 
     private readonly IWalkerRepository _walkerRepo;
 
@@ -17,7 +20,7 @@ namespace DogGo.Controllers
         _walkerRepo = walkerRepository;
     }
 
-    {
+    
         // GET: WalkersController
         public ActionResult Index()
         {

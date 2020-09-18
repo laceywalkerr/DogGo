@@ -2,46 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DogGo.Models;
+using DogGo.Repositories;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DogGo.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OwnersController : ControllerBase
+    public class OwnersController : Controller
     {
-        // GET: api/<OwnersController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private readonly IOwnerRepository _ownerRepo;
 
-        // GET api/<OwnersController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // ASP.NET will give us an instance of our Owner Repository. This is called "Dependency Injection"
+        public OwnersController(IOwnerRepository ownerRepository)
         {
-            return "value";
+            _ownerRepo = ownerRepository;
         }
-
-        // POST api/<OwnersController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Index()
         {
+            List<Owner> owners = _ownerRepo.GetAllOwners();
+            return View();
         }
-
-        // PUT api/<OwnersController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // GET: Owners/Details/5
+        public ActionResult Details(int id)
         {
-        }
+            Owner owner = _ownerRepo.GetOwnerById(id);
 
-        // DELETE api/<OwnersController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (owner == null)
+            {
+                return NotFound();
+            }
+
+            return View(owner);
         }
     }
 }

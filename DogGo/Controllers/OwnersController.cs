@@ -17,10 +17,10 @@ namespace DogGo.Controllers
         {
             _ownerRepo = ownerRepository;
         }
-        public IActionResult Index()
+        public ActionResult Index()
         {
             List<Owner> owners = _ownerRepo.GetAllOwners();
-            return View();
+            return View(owners);
         }
         // GET: Owners/Details/5
         public ActionResult Details(int id)

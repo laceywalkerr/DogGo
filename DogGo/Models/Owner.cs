@@ -4,13 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace DogGo.Models
 {
-    public class Owner : Controller
+    public class Owner
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public int Id { get; set; }
+
+        public string Email { get; set; }
+        public string Name { get; set; }
+
+        public string Address { get; set; }
+        public int NeighborhoodId { get; set; }
+
+        public string Phone { get; set; }
+        public Neighborhood Neighborhood { get; set; }
     }
 }

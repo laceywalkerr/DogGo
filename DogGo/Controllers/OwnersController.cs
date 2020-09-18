@@ -33,6 +33,8 @@ namespace DogGo.Controllers
             }
 
             return View(owner);
+
+            /*Frankly, I have no idea why this isn't working.*/
         }
     }
 }

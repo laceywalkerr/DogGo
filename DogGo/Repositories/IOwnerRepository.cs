@@ -1,16 +1,14 @@
-﻿using System;
+﻿using DogGo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DogGo.Repositories
 {
-    public class IOwnerRepository : Controller
+    public interface IOwnerRepository
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        List<Owner> GetAllOwners();
+        Owner GetOwnerById(int id);
     }
 }

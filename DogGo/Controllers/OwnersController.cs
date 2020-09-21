@@ -36,5 +36,27 @@ namespace DogGo.Controllers
 
             /*Frankly, I have no idea why this isn't working.*/
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Owners/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Owner owner)
+        {
+            try
+            {
+                _ownerRepo.AddOwner(owner);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View(owner);
+            }
+        }
     }
 }

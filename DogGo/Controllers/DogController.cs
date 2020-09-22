@@ -43,9 +43,21 @@ namespace DogGo.Controllers
             }
         }
 
+        public ActionResult Details(int id)
+        {
+            Dog dog = _dogRepo.GetDogById(id);
 
-        // GET: Dogs/Delete/5
-        public ActionResult Delete(int id)
+            if (dog == null)
+            {
+                return NotFound();
+            }
+
+            return View(dog);
+
+        }
+
+            // GET: Dogs/Delete/5
+            public ActionResult Delete(int id)
         {
             Dog dog = _dogRepo.GetDogById(id);
 

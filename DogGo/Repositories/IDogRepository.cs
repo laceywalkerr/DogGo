@@ -8,18 +8,18 @@ using DogGo.Models;
 
 namespace DogGo.Repositories
 {
-    public class IDogRepository : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
 
-        }
-
-        internal List<Dog> GetAll()
+    
+        public interface IDogRepository
         {
-            throw new NotImplementedException();
-        }
+
+        List<Dog> GetAllDogs();
+        Dog GetDogById(int id);
+        void AddDog(Dog newDog);
+        void DeleteDog(int dogId);
+        void UpdateDog(Dog dog);
+        List<Dog> GetDogsByOwnerId(int ownerId);
     }
+    
 }
 

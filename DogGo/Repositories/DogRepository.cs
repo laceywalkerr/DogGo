@@ -15,10 +15,6 @@ namespace DogGo.Repositories
             _config = config;
         }
 
-        public DogRepository()
-        {
-        }
-
         public SqlConnection Connection
         {
             get
@@ -35,7 +31,7 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, [Name], OwnerId, Breed, Notes, 
+                        SELECT Id, [Name], OwnerId, Breed 
                         FROM Dog
                     ";
 
@@ -50,7 +46,7 @@ namespace DogGo.Repositories
                             Name = reader.GetString(reader.GetOrdinal("Name")),
                             OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
                             Breed = reader.GetString(reader.GetOrdinal("Breed")),
-                            Notes = reader.GetString(reader.GetOrdinal("Notes")),
+                           /* Notes = reader.GetString(reader.GetOrdinal("Notes")),*/
                             
                         };
 
@@ -91,7 +87,7 @@ namespace DogGo.Repositories
                             Name = reader.GetString(reader.GetOrdinal("Name")),
                             OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
                             Breed = reader.GetString(reader.GetOrdinal("Breed")),
-                            Notes = reader.GetString(reader.GetOrdinal("Notes")),
+                           /* Notes = reader.GetString(reader.GetOrdinal("Notes")),*/
 
                         };
 
@@ -113,15 +109,15 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    INSERT INTO Dog ([Name], OwnerId, Breed, Notes, )
+                    INSERT INTO Dog ([Name], OwnerId, Breed )
                     OUTPUT INSERTED.ID
-                    VALUES (@name, @ownerid, @breed, @notes);
+                    VALUES (@name, @ownerid, @breed );
                 ";
 
                     cmd.Parameters.AddWithValue("@name", dog.Name);
                     cmd.Parameters.AddWithValue("@ownerid", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    cmd.Parameters.AddWithValue("@notes", dog.Notes);
+                    /*cmd.Parameters.AddWithValue("@notes", dog.Notes);*/
 
 
                     int id = (int)cmd.ExecuteScalar();
@@ -145,15 +141,14 @@ namespace DogGo.Repositories
                                 [Name] = @name, 
                                 OwnerId = @ownerid, 
                                 Breed = @breed, 
-                                Notes = @notes, 
+                                
 
                             WHERE Id = @id";
 
                     cmd.Parameters.AddWithValue("@name", dog.Name);
                     cmd.Parameters.AddWithValue("@ownerid", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    cmd.Parameters.AddWithValue("@notes", dog.Notes);
-
+                    /*cmd.Parameters.AddWithValue("@notes", dog.Notes);*/
                     cmd.Parameters.AddWithValue("@id", dog.Id);
 
                     cmd.ExecuteNonQuery();

@@ -10,14 +10,14 @@ namespace DogGo.Controllers
 {
     public class DogController : Controller
     {
-        private readonly IDogRepository _dogRepository;
+        private readonly IDogRepository _dogRepo;
         public DogController(IDogRepository dogRepository)
         {
-            _dogRepository = dogRepository;
+            _dogRepo = dogRepository;
         }
-        public IActionResult Index()
+        public ActionResult Index()
         {
-            List<Dog> dogs = _dogRepository.GetAllDogs();
+            List<Dog> dogs = _dogRepo.GetAllDogs();
             return View(dogs);
         }
 
@@ -33,7 +33,7 @@ namespace DogGo.Controllers
         {
             try
             {
-                _dogRepository.AddDog(dog);
+                _dogRepo.AddDog(dog);
 
                 return RedirectToAction("Index");
             }
@@ -47,7 +47,7 @@ namespace DogGo.Controllers
         // GET: Dogs/Delete/5
         public ActionResult Delete(int id)
         {
-            Dog dog = _dogRepository.GetDogById(id);
+            Dog dog = _dogRepo.GetDogById(id);
 
             return View(dog);
         }
@@ -59,7 +59,7 @@ namespace DogGo.Controllers
         {
             try
             {
-                _dogRepository.DeleteDog(id);
+                _dogRepo.DeleteDog(id);
 
                 return RedirectToAction("Index");
             }
@@ -72,7 +72,7 @@ namespace DogGo.Controllers
         // GET: Owners/Edit/5
         public ActionResult Edit(int id)
         {
-            Dog dog = _dogRepository.GetDogById(id);
+            Dog dog = _dogRepo.GetDogById(id);
 
             if (dog == null)
             {
@@ -89,7 +89,7 @@ namespace DogGo.Controllers
         {
             try
             {
-                _dogRepository.UpdateDog(dog);
+                _dogRepo.UpdateDog(dog);
 
                 return RedirectToAction("Index");
             }

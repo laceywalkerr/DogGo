@@ -69,7 +69,7 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, [Name], OwnerId, Breed, Notes, 
+                        SELECT Id, [Name], OwnerId, Breed, Notes
                         FROM Dog
                         WHERE Id = @id";
 
@@ -86,7 +86,7 @@ namespace DogGo.Repositories
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Name = reader.GetString(reader.GetOrdinal("Name")),
                             OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
-                            Breed = reader.GetString(reader.GetOrdinal("Breed")),
+                            Breed = reader.GetString(reader.GetOrdinal("Breed"))
                            /* Notes = reader.GetString(reader.GetOrdinal("Notes")),*/
 
                         };
@@ -140,7 +140,7 @@ namespace DogGo.Repositories
                             SET 
                                 [Name] = @name, 
                                 OwnerId = @ownerid, 
-                                Breed = @breed, 
+                                Breed = @breed
                                 
 
                             WHERE Id = @id";

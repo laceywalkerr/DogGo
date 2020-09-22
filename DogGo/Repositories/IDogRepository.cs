@@ -15,6 +15,11 @@ namespace DogGo.Repositories
             return View();
 
         }
+
+        internal List<Dog> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

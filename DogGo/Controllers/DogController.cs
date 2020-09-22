@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DogGo.Models;
 using DogGo.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace DogGo.Controllers
         }
         public IActionResult Index()
         {
-            List<dog>
+            List<Dog> dogs = _dogRepository.GetAll();
             return View();
         }
     }

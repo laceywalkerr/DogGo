@@ -58,5 +58,32 @@ namespace DogGo.Controllers
                 return View(owner);
             }
         }
+
+
+        // GET: Owners/Delete/5
+        public ActionResult Delete(int id)
+        {
+            Owner owner = _ownerRepo.GetOwnerById(id);
+
+            return View(owner);
+        }
+
+        // POST: Owners/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, Owner owner)
+        {
+            try
+            {
+                _ownerRepo.DeleteOwner(id);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View(owner);
+            }
+        }
+
     }
 }

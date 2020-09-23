@@ -17,18 +17,24 @@ namespace DogGo.Controllers
     
     public class OwnersController : Controller
     {
+        //the Owner Details view needs to know more than just the owner, this accesses the other repositories
         //this lists the repos that we are currently using to call our methods
+        // these are private readonly fields
         private readonly IOwnerRepository _ownerRepo;
         private readonly IDogRepository _dogRepo;
         private readonly IWalkerRepository _walkerRepo;
         private readonly INeighborhoodRepository _neighborhoodRepo;
+
         //this gives us access to the repositories we need to use
+        // IOwnerRepositry,IDogRepository,IWalkerRepository and INeighborhoodRepository are parameters
+        //whenever the controllers are created, it gives the repositories from above. This is how it connects.
         public OwnersController(
             IOwnerRepository ownerRepository,
             IDogRepository dogRepository,
             IWalkerRepository walkerRepository,
             INeighborhoodRepository neighborhoodRepository)
         {
+            //feilds generated , assigning property to OwnerRepository/DogRepository/WalkerRepository/NeighborhoodRepository
             _ownerRepo = ownerRepository;
             _dogRepo = dogRepository;
             _walkerRepo = walkerRepository;
@@ -38,8 +44,10 @@ namespace DogGo.Controllers
         //An ActionResult is a return type of a controller method, also called an action method, and serves as the base class for *Result classes. 
         //Action methods return models to views, file streams, redirect to other controllers, or whatever is necessary for the task at hand.
         // This Public Action Result is creating the Index for the Owners, then listing them.
+        //Fun fact: Index is the default method
         public ActionResult Index()
         {
+            //method that lists all of the owners from the owners repository
             List<Owner> owners = _ownerRepo.GetAllOwners();
             return View(owners);
         }

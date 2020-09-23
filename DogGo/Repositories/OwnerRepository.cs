@@ -12,7 +12,8 @@ namespace DogGo.Repositories
     {
         private readonly IConfiguration _config;
 
-        // The constructor accepts an IConfiguration object as a parameter. This class comes from the ASP.NET framework and is useful for retrieving things out of the appsettings.json file like connection strings.
+        // The constructor accepts an IConfiguration object as a parameter. 
+        // This class comes from the ASP.NET framework and is useful for retrieving things out of the appsettings.json file like connection strings.
         public OwnerRepository(IConfiguration config)
         {
             _config = config;
@@ -25,12 +26,15 @@ namespace DogGo.Repositories
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-
+        //getting the list of all the owners
         public List<Owner> GetAllOwners()
         {
+            //setting the connection to Sql
             using (SqlConnection conn = Connection)
             {
+                //opeining the connection
                 conn.Open();
+                //creating the command to send to SQL
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
@@ -39,7 +43,7 @@ namespace DogGo.Repositories
                     ";
 
                     SqlDataReader reader = cmd.ExecuteReader();
-
+                    //looping over everyone in our owners list, also creating a new list
                     List<Owner> owners = new List<Owner>();
                     while (reader.Read())
                     {
@@ -55,7 +59,7 @@ namespace DogGo.Repositories
 
                         owners.Add(owner);
                     }
-
+                    //closing the connection
                     reader.Close();
 
                     return owners;
@@ -63,6 +67,7 @@ namespace DogGo.Repositories
             }
         }
 
+        //Owner is the class from the Models folder
         public Owner GetOwnerById(int id)
         {
             using (SqlConnection conn = Connection)

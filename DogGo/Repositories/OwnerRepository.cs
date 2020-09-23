@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 namespace DogGo.Repositories
 {
+    //to generate IOwnerRepository, you -can- hover over OwnerRepository, go to the screwdriver tool on the left, and select extract interface (unclick connection so it's only selecting "getall")
+
     public class OwnerRepository : IOwnerRepository
     {
         private readonly IConfiguration _config;

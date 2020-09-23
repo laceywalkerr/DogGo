@@ -17,11 +17,12 @@ namespace DogGo.Controllers
     
     public class OwnersController : Controller
     {
+        //this lists the repos that we are currently using to call our methods
         private readonly IOwnerRepository _ownerRepo;
         private readonly IDogRepository _dogRepo;
         private readonly IWalkerRepository _walkerRepo;
         private readonly INeighborhoodRepository _neighborhoodRepo;
-
+        //this gives us access to the repositories we need to use
         public OwnersController(
             IOwnerRepository ownerRepository,
             IDogRepository dogRepository,
@@ -51,30 +52,37 @@ namespace DogGo.Controllers
             Owner owner = _ownerRepo.GetOwnerById(id);
             //this gets the dogs that the owner's ID is associated with
             List<Dog> dogs = _dogRepo.GetDogsByOwnerId(owner.Id);
-            //this gets the walkers from that neighborhood
+            //this gets the walkers from that neighborhood the owners are in
             List<Walker> walkers = _walkerRepo.GetWalkersInNeighborhood(owner.NeighborhoodId);
 
             ProfileViewModel vm = new ProfileViewModel()
             {
+                //properties to be used 
                 Owner = owner,
                 Dogs = dogs,
                 Walkers = walkers
             };
-
+            //passes the view model object from the controller
             return View(vm);
+
+            //after this is set, check the details in views. Make sure it's taking in the view model type so it can read the information correctly
+            // In this instance, @model DogGo.Models.Owner is changed to @model DogGo.Models.ViewModels.ProfileViewModel
         }
 
         // GET: Owners/Create
+
+        //setting the create method for owner
         public ActionResult Create()
         {
+            //this passes the list of neighborhoods on to the views/calling this method to get a list of all the neighborhoods
             List<Neighborhood> neighborhoods = _neighborhoodRepo.GetAll();
-
+            //creating an instance of our viewmodel, giving it those neighborhoods to populate the dropdown
             OwnerFormViewModel vm = new OwnerFormViewModel()
             {
                 Owner = new Owner(),
                 Neighborhoods = neighborhoods
             };
-
+            //passes this to the views
             return View(vm);
         }
 

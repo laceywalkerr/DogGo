@@ -8,6 +8,7 @@ namespace DogGo.Models.ViewModels
 {
     public class ProfileViewModel
     {
+        //properties for each portion of the view that we need
         public Owner Owner { get; set; }
         public List<Walker> Walkers { get; set; }
         public List<Dog> Dogs { get; set; }

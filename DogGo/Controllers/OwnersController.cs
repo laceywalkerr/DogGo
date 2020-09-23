@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace DogGo.Controllers
 {
+    
     public class OwnersController : Controller
     {
         private readonly IOwnerRepository _ownerRepo;
@@ -32,6 +33,10 @@ namespace DogGo.Controllers
             _walkerRepo = walkerRepository;
             _neighborhoodRepo = neighborhoodRepository;
         }
+
+        //An ActionResult is a return type of a controller method, also called an action method, and serves as the base class for *Result classes. 
+        //Action methods return models to views, file streams, redirect to other controllers, or whatever is necessary for the task at hand.
+        // This Public Action Result is creating the Index for the Owners, then listing them.
         public ActionResult Index()
         {
             List<Owner> owners = _ownerRepo.GetAllOwners();
@@ -39,10 +44,14 @@ namespace DogGo.Controllers
         }
 
         // GET: Owners/Details/5
+        //int id = url, getting the particular owner that we select
         public ActionResult Details(int id)
         {
+            //this calls the owner by their Id
             Owner owner = _ownerRepo.GetOwnerById(id);
+            //this gets the dogs that the owner's ID is associated with
             List<Dog> dogs = _dogRepo.GetDogsByOwnerId(owner.Id);
+            //this gets the walkers from that neighborhood
             List<Walker> walkers = _walkerRepo.GetWalkersInNeighborhood(owner.NeighborhoodId);
 
             ProfileViewModel vm = new ProfileViewModel()
@@ -117,14 +126,15 @@ namespace DogGo.Controllers
         // GET: Owners/Edit/5
         public ActionResult Edit(int id)
         {
-            Owner owner = _ownerRepo.GetOwnerById(id);
+            List<Neighborhood> neighborhoods = _neighborhoodRepo.GetAll();
 
-            if (owner == null)
+            OwnerFormViewModel vm = new OwnerFormViewModel()
             {
-                return NotFound();
-            }
+                Owner = new Owner(),
+                Neighborhoods = neighborhoods
+            };
 
-            return View(owner);
+            return View(vm);
         }
 
         // POST: Owners/Edit/5

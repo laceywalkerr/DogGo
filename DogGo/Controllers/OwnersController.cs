@@ -84,9 +84,11 @@ namespace DogGo.Controllers
         {
             //this passes the list of neighborhoods on to the views/calling this method to get a list of all the neighborhoods
             List<Neighborhood> neighborhoods = _neighborhoodRepo.GetAll();
+
             //creating an instance of our viewmodel, giving it those neighborhoods to populate the dropdown
             OwnerFormViewModel vm = new OwnerFormViewModel()
             {
+                // properties to be used 
                 Owner = new Owner(),
                 Neighborhoods = neighborhoods
             };
@@ -97,16 +99,21 @@ namespace DogGo.Controllers
         // POST: Owners/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+
+        //executing the method for the create method
         public ActionResult Create(Owner owner)
         {
             try
             {
+                //calling the owner repository, creating the owner
                 _ownerRepo.AddOwner(owner);
 
+                //returning to index
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
+                //return to view owner
                 return View(owner);
             }
         }
@@ -115,57 +122,72 @@ namespace DogGo.Controllers
 
 
         // GET: Owners/Delete/5
+        // setting the delete method for Owners using the Id
         public ActionResult Delete(int id)
         {
+            // getting the information to delete
             Owner owner = _ownerRepo.GetOwnerById(id);
 
+            //returning the info
             return View(owner);
         }
 
         // POST: Owners/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+
+        //  executing delete method for Owners 
         public ActionResult Delete(int id, Owner owner)
         {
             try
             {
+                //calling the owner by the id for deletion
                 _ownerRepo.DeleteOwner(id);
-
+                //returning to index
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
-            {
+            { //returning to the owner view
                 return View(owner);
             }
         }
 
         // GET: Owners/Edit/5
+        // setting the edit method for Owners using the Id
         public ActionResult Edit(int id)
         {
+            //getting and listing all the neighborhoods
             List<Neighborhood> neighborhoods = _neighborhoodRepo.GetAll();
 
+            //updating the new edited changes, sourced from OwnerFormViewModel
             OwnerFormViewModel vm = new OwnerFormViewModel()
             {
+                //properties to be used
                 Owner = new Owner(),
                 Neighborhoods = neighborhoods
             };
-
+            //passes the view model object from the controller
             return View(vm);
         }
 
         // POST: Owners/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //  executing edit method for Owners 
         public ActionResult Edit(int id, Owner owner)
         {
+
             try
             {
+                //calling the owner repository, updating the owner
                 _ownerRepo.UpdateOwner(owner);
 
+                //returning to the index
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
+                //passes the view model object of owner to the controller
                 return View(owner);
             }
         }

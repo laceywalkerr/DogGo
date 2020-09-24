@@ -21,16 +21,18 @@ namespace DogGo.Controllers
         // GET: WalksController
         public ActionResult Index()
         {
-         /*   List<Walk> walks = _walkRepo.GetAllWalks();*/
-            return View(/*walks*/);
+            //method that lists all of the owners from the owners repository
+            List<Walk> walks = _walkRepo.GetAllWalks();
+            return View(walks);
         }
 
-
+        // this is getting the walk details
+        //int id = url, getting the particular owner that we select
         public ActionResult Details(int id)
         {
-            /*Walk walk = _walkRepo.GetWalkByDetails(id);*/
-
-            return View(/*walk*/);
+            //this calls the walk by the Id
+            Walk walk = _walkRepo.GetWalkById(id);
+            return View(walk);
         }
 
     }

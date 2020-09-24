@@ -1,5 +1,6 @@
 ﻿@model DogGo.Models.ViewModels.ProfileViewModel
 
+
 @{
     ViewData["Title"] = "Details";
 }
@@ -73,50 +74,22 @@
     </section>
 
 
-           @*--------------TESTING------------------     *@
-<section class="col-lg-4 col-md-8 container mt-5">
-    <h1>Recent Walks</h1>
-
-    @*   <ul class="list-group mt-4">
-        @foreach (Walk walk in Model.Walk) {
-        <li class="list-group-item disabled" aria-disabled="true">
-            <img src="@walk.DogId" style="width:50px" />
-
-        </li>*@
-
-    @*    <div class="card-body">
-            <div>
-                <label class="font-weight-bold">Date:</label>
-                <span>@walk.Date</span>
-            </div>
-            <div>
-                <label class="font-weight-bold">Client:</label>
-                <span>@walk.DogId</span>
-            </div>
-            <div>
-                <label class="font-weight-bold">Duration:</label>
-                <p>@walk.Duration</p>
-            </div>
-        </div>*@
-
+    @*--------------TESTING------------------     *@
     <section class="container">
+        <h1> Recent Walks</h1>
         <div>
             <label class="font-weight-bold">Date:</label>
-            @*<span>@Model.Walk.Date</span>*@
+            <span>@Model.Walk.Date</span>
         </div>
-        <div>
+        @*<div>
             <label class="font-weight-bold">Client:</label>
-            @*<span>@Model.Walk.DogId</span>*@
+            <span>@Model.Walk.DogId</span>
         </div>
         <div>
             <label class="font-weight-bold">Duration:</label>
-            @*<span>@Model.Walk.Email</span>*@
-        </div>
+            <span>@Model.Walk.Duration</span>
+        </div>*@
     </section>
-    
-    </ul>
-</section>
 
 
-</div>
 </div>

@@ -155,9 +155,10 @@ namespace DogGo.Repositories
                 }
             }
         }
-/*        There are more columns in the INSERT statement than values specified in the VALUES clause.
-            The number of values in the VALUES clause must match the number of columns specified 
-            in the INSERT statement.*/
+        /*        There are more columns in the INSERT statement than values specified in the VALUES clause.
+                    The number of values in the VALUES clause must match the number of columns specified 
+                    in the INSERT statement.*/
+
         public void AddDog(Dog dog)
         {
             using (SqlConnection conn = Connection)
@@ -166,37 +167,23 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    INSERT INTO Dog (Name, OwnerId, Breed, Notes, ImageUrl)
-                    OUTPUT INSERTED.ID
-                    VALUES (@name, @ownerid, @breed, @notes, @imageurl);
-                ";
+                INSERT INTO Dog ([Name], OwnerId, Breed, Notes, ImageUrl)
+                OUTPUT INSERTED.ID
+                VALUES (@name, @ownerId, @breed, @notes, @imageUrl);
+            ";
 
                     cmd.Parameters.AddWithValue("@name", dog.Name);
-                    cmd.Parameters.AddWithValue("@ownerid", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    /*cmd.Parameters.AddWithValue("@notes", dog.Notes);*/
+                    cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
 
+                    // nullable columns
+                    cmd.Parameters.AddWithValue("@notes", dog.Notes ?? "");
+                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl ?? "");
 
-                    if (dog.Notes == null)
-                    {
-                        cmd.Parameters.AddWithValue("@Notes", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@Notes", dog.Notes);
-                    }
+                    int newlyCreatedId = (int)cmd.ExecuteScalar();
 
-                    
-                    if (dog.ImageUrl == null)
-                    {
-                        cmd.Parameters.AddWithValue("@ImageUrl", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@ImageUrl", dog.ImageUrl);
-                    }
+                    dog.Id = newlyCreatedId;
 
-                    dog.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }

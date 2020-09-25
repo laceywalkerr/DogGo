@@ -1,4 +1,5 @@
-﻿@model DogGo.Models.ViewModels.ProfileViewModel
+﻿@model DogGo.Models.ViewModels.WalkerProfileViewModel
+
 
 @{
     ViewData["Title"] = "Details";
@@ -10,23 +11,19 @@
     <img style="width:100px;float:left;margin-right:20px"
          src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Font_Awesome_5_regular_user-circle.svg" />
     <div>
-        <label class="font-weight-bold">Address:</label>
-        <span>@Model.Owner.Address</span>
+        <label class="font-weight-bold">Name:</label>
+        <span>@Model.Walker.Name</span>
     </div>
     <div>
-        <label class="font-weight-bold">Phone:</label>
-        <span>@Model.Owner.Phone</span>
-    </div>
-    <div>
-        <label class="font-weight-bold">Email:</label>
-        <span>@Model.Owner.Email</span>
+        <label class="font-weight-bold">Neighborhood:</label>
+        <span>@Model.Walker.NeighborhoodId</span>
     </div>
 </section>
 
 <hr class="mt-5" />
 <div class="clearfix"></div>
 
-<div class="row">
+@*<div class="row">
     <section class="col-8 container mt-5">
         <h1 class="text-left">Dogs</h1>
 
@@ -57,9 +54,9 @@
             </div>
         }
         </div>
-    </section>
+    </section>*@
 
-    <section class="col-lg-4 col-md-8 container mt-5">
+@*    <section class="col-lg-4 col-md-8 container mt-5">
         <h1>Walkers Near Me</h1>
 
         <ul class="list-group mt-4">
@@ -70,53 +67,37 @@
             </li>
         }
         </ul>
-    </section>
+    </section>*@
 
 
-           @*--------------TESTING------------------     *@
-<section class="col-lg-4 col-md-8 container mt-5">
-    <h1>Recent Walks</h1>
+    @*--------------TESTING------------------     *@
+<div>
 
-    @*   <ul class="list-group mt-4">
-        @foreach (Walk walk in Model.Walk) {
+    <ul class="list-group mt-4">
+        @foreach (Walk walk in Model.Walks) {
         <li class="list-group-item disabled" aria-disabled="true">
-            <img src="@walk.DogId" style="width:50px" />
 
-        </li>*@
-
-    @*    <div class="card-body">
+            <span class="font-weight-bold ml-4">@walk.Date</span>
+            <span class="font-weight-bold ml-4">@walk.DogId</span>
+            <span class="font-weight-bold ml-4">@walk.Duration</span>
+        </li>
+        }
+    </ul>
+    @*    <section class="container">
+            <h1>Recent Walks</h1>
             <div>
                 <label class="font-weight-bold">Date:</label>
-                <span>@walk.Date</span>
+                <span>@Model.Walk.Date</span>
             </div>
             <div>
                 <label class="font-weight-bold">Client:</label>
-                <span>@walk.DogId</span>
+                <span>@Model.Walk.DogId</span>
             </div>
             <div>
                 <label class="font-weight-bold">Duration:</label>
-                <p>@walk.Duration</p>
+                <span>@Model.Walk.Duration</span>
             </div>
-        </div>*@
+        </section>
+    *@
 
-    <section class="container">
-        <div>
-            <label class="font-weight-bold">Date:</label>
-            @*<span>@Model.Walk.Date</span>*@
-        </div>
-        <div>
-            <label class="font-weight-bold">Client:</label>
-            @*<span>@Model.Walk.DogId</span>*@
-        </div>
-        <div>
-            <label class="font-weight-bold">Duration:</label>
-            @*<span>@Model.Walk.Email</span>*@
-        </div>
-    </section>
-    
-    </ul>
-</section>
-
-
-</div>
 </div>

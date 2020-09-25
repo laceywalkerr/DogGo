@@ -108,7 +108,6 @@ namespace DogGo.Controllers
                 //calling the owner repository, creating the owner
                 _ownerRepo.AddOwner(owner);
 
-                //returning to index
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

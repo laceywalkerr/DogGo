@@ -1,4 +1,4 @@
-﻿@model DogGo.Models.ViewModels.ProfileViewModel
+﻿@model DogGo.Models.ViewModels.WalkerProfileViewModel
 
 
 @{
@@ -12,22 +12,18 @@
          src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Font_Awesome_5_regular_user-circle.svg" />
     <div>
         <label class="font-weight-bold">Address:</label>
-        <span>@Model.Owner.Address</span>
+        <span>@Model.Walker.Name</span>
     </div>
     <div>
         <label class="font-weight-bold">Phone:</label>
-        <span>@Model.Owner.Phone</span>
-    </div>
-    <div>
-        <label class="font-weight-bold">Email:</label>
-        <span>@Model.Owner.Email</span>
+        <span>@Model.Walker.NeighborhoodId</span>
     </div>
 </section>
 
 <hr class="mt-5" />
 <div class="clearfix"></div>
 
-<div class="row">
+@*<div class="row">
     <section class="col-8 container mt-5">
         <h1 class="text-left">Dogs</h1>
 
@@ -58,9 +54,9 @@
             </div>
         }
         </div>
-    </section>
+    </section>*@
 
-    <section class="col-lg-4 col-md-8 container mt-5">
+@*    <section class="col-lg-4 col-md-8 container mt-5">
         <h1>Walkers Near Me</h1>
 
         <ul class="list-group mt-4">
@@ -71,7 +67,7 @@
             </li>
         }
         </ul>
-    </section>
+    </section>*@
 
 
     @*--------------TESTING------------------     *@

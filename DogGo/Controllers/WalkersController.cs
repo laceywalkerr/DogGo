@@ -13,19 +13,22 @@ namespace DogGo.Controllers
     public class WalkersController : Controller 
     {
 
-        private readonly IOwnerRepository _ownerRepo;
-        private readonly IDogRepository _dogRepo;
+/*        private readonly IOwnerRepository _ownerRepo;
+        private readonly IDogRepository _dogRepo;*/
         private readonly IWalkerRepository _walkerRepo;
+        private readonly IWalkRepository _walkRepo;
 
 
         public WalkersController(
-            IOwnerRepository ownerRepository,
-            IDogRepository dogRepository,
-            IWalkerRepository walkerRepository)
+/*            IOwnerRepository ownerRepository,
+            IDogRepository dogRepository,*/
+            IWalkerRepository walkerRepository,
+            IWalkRepository walkRepository)
         {
-            _ownerRepo = ownerRepository;
-            _dogRepo = dogRepository;
+/*            _ownerRepo = ownerRepository;
+            _dogRepo = dogRepository;*/
             _walkerRepo = walkerRepository;
+            _walkRepo = walkRepository;
         }
 
 
@@ -39,15 +42,13 @@ namespace DogGo.Controllers
         // GET: Owners/Details/5
         public ActionResult Details(int id)
         {
-            Owner owner = _ownerRepo.GetOwnerById(id);
-            List<Dog> dogs = _dogRepo.GetDogsByOwnerId(owner.Id);
-            List<Walker> walkers = _walkerRepo.GetWalkersInNeighborhood(owner.NeighborhoodId);
+            Walker walker = _walkerRepo.GetWalkerById(id);
+            /*List<Walk> walks = _walkRepo.GetWalksByWalkerId(walker.Id);*/
 
-            ProfileViewModel vm = new ProfileViewModel()
+            WalkerProfileViewModel vm = new WalkerProfileViewModel()
             {
-                Owner = owner,
-                Dogs = dogs,
-                Walkers = walkers
+                /*Walks = walks,*/
+                Walker = walker
             };
 
             return View(vm);

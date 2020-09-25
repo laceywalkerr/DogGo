@@ -72,13 +72,22 @@
 
     @*--------------TESTING------------------     *@
 <div>
-
+    <h1>Recent Walks</h1>
     <ul class="list-group mt-4">
+    <li class="list-group-item disabled" aria-disabled="true">
+        <label class="font-weight-bold">Date:</label>
+        <label class="font-weight-bold">Client:</label>
+        <label class="font-weight-bold">Duration:</label>
+    </li>
+
+
         @foreach (Walk walk in Model.Walks) {
         <li class="list-group-item disabled" aria-disabled="true">
 
             <span class="font-weight-bold ml-4">@walk.Date</span>
+
             <span class="font-weight-bold ml-4">@walk.DogId</span>
+
             <span class="font-weight-bold ml-4">@walk.Duration</span>
         </li>
         }

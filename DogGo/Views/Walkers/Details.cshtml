@@ -15,8 +15,8 @@
         <span>@Model.Walker.Name</span>
     </div>
     <div>
-        <label class="font-weight-bold">Phone:</label>
-        <span>@Model.Walker.NeighborhoodId</span>
+        <label class="font-weight-bold">Neighborhood:</label>
+        <span>@Model.Walker.Neighborhood</span>
     </div>
 </section>
 
@@ -71,21 +71,33 @@
 
 
     @*--------------TESTING------------------     *@
-    <section class="container">
-        <h1> Recent Walks</h1>
-        <div>
-            <label class="font-weight-bold">Date:</label>
-            <span>@Model.Walk.Date</span>
-        </div>
-        @*<div>
-            <label class="font-weight-bold">Client:</label>
-            <span>@Model.Walk.DogId</span>
-        </div>
-        <div>
-            <label class="font-weight-bold">Duration:</label>
-            <span>@Model.Walk.Duration</span>
-        </div>*@
-    </section>
+<div>
 
+    <ul class="list-group mt-4">
+        @foreach (Walk walk in Model.Walks) {
+        <li class="list-group-item disabled" aria-disabled="true">
+
+            <span class="font-weight-bold ml-4">@walk.Date</span>
+            <span class="font-weight-bold ml-4">@walk.DogId</span>
+            <span class="font-weight-bold ml-4">@walk.Duration</span>
+        </li>
+        }
+    </ul>
+    @*    <section class="container">
+            <h1>Recent Walks</h1>
+            <div>
+                <label class="font-weight-bold">Date:</label>
+                <span>@Model.Walk.Date</span>
+            </div>
+            <div>
+                <label class="font-weight-bold">Client:</label>
+                <span>@Model.Walk.DogId</span>
+            </div>
+            <div>
+                <label class="font-weight-bold">Duration:</label>
+                <span>@Model.Walk.Duration</span>
+            </div>
+        </section>
+    *@
 
 </div>

@@ -43,11 +43,11 @@ namespace DogGo.Controllers
         public ActionResult Details(int id)
         {
             Walker walker = _walkerRepo.GetWalkerById(id);
-            /*List<Walk> walks = _walkRepo.GetWalksByWalkerId(walker.Id);*/
+            List<Walk> walks = _walkRepo.GetWalksByWalkerId(walker.Id);
 
             WalkerProfileViewModel vm = new WalkerProfileViewModel()
             {
-                /*Walks = walks,*/
+                Walks = walks,
                 Walker = walker
             };
 

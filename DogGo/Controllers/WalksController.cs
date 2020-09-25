@@ -11,11 +11,20 @@ namespace DogGo.Controllers
 {
     public class WalksController : Controller
     {
+        private readonly IWalkerRepository _walkerRepo;
         private readonly IWalkRepository _walkRepo;
-        public WalksController(IWalkRepository walkRepository)
+
+
+        public WalksController(
+       
+            /*IWalkerRepository walkerRepository,*/
+            IWalkRepository walkRepository)
         {
+          
+           /* _walkerRepo = walkerRepository;*/
             _walkRepo = walkRepository;
         }
+
 
 
         // GET: WalksController

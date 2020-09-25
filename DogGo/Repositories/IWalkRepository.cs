@@ -10,6 +10,6 @@ namespace DogGo.Repositories
     {
         List<Walk> GetAllWalks();
         Walk GetWalkById(int id);
-
+        List<Walk> GetWalksByWalkerId(int walkerId);
     }
 }

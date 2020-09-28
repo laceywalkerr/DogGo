@@ -28,7 +28,7 @@ namespace DogGo.Controllers
             return int.Parse(id);
         }
 
-        /*[Authorize]*/
+        [Authorize]
         public ActionResult Index()
         {
             int ownerId = GetCurrentUserId();
@@ -38,7 +38,7 @@ namespace DogGo.Controllers
             return View(dogs);
         }
 
-        /*[Authorize]*/
+        [Authorize]
         public ActionResult Create()
         {
             return View();

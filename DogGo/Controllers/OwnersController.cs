@@ -206,11 +206,11 @@ namespace DogGo.Controllers
             }
 
             var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.NameIdentifier, owner.Id.ToString()),
-        new Claim(ClaimTypes.Email, owner.Email),
-        new Claim(ClaimTypes.Role, "DogOwner"),
-    };
+            {
+                new Claim(ClaimTypes.NameIdentifier, owner.Id.ToString()),
+                new Claim(ClaimTypes.Email, owner.Email),
+                new Claim(ClaimTypes.Role, "DogOwner"),
+            };
 
             var claimsIdentity = new ClaimsIdentity(
                 claims, CookieAuthenticationDefaults.AuthenticationScheme);

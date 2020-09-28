@@ -16,6 +16,8 @@ namespace DogGo.Models.ViewModels
 
         public Walk Walk { get; set; }
         public List<Walk> Walks { get; set; }
+
+        public Neighborhood Neighborhood { get; set; }
     }
 }
 

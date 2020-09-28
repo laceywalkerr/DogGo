@@ -238,6 +238,45 @@ namespace DogGo.Repositories
                 }
             }
         }
+
+        public List<Dog> GetDogsByWalkerId(int dogId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                SELECT Id, Name
+                FROM Dog
+                WHERE Id = @id
+            ";
+
+                    cmd.Parameters.AddWithValue("@id", dogId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    List<Dog> dogs = new List<Dog>();
+
+                    while (reader.Read())
+                    {
+                        Dog dog = new Dog()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+
+                         
+                        };
+
+                   
+                        dogs.Add(dog);
+                    }
+                    reader.Close();
+                    return dogs;
+                }
+            }
+        }
     }
 }
 

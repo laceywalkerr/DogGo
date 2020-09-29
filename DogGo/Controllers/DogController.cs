@@ -14,12 +14,16 @@ namespace DogGo.Controllers
     public class DogController : Controller
     {
         private readonly IDogRepository _dogRepo;
+        /*private readonly IWalkRepository _walkRepo;*/
 
         public SqlConnection Connection { get; private set; }
 
-        public DogController(IDogRepository dogRepository)
+        public DogController(
+            IDogRepository dogRepository/*,
+             IWalkRepository walkRepository*/)
         {
             _dogRepo = dogRepository;
+            /*_walkRepo = walkRepository;*/
         }
 
         private int GetCurrentUserId()
@@ -34,6 +38,7 @@ namespace DogGo.Controllers
             int ownerId = GetCurrentUserId();
 
             List<Dog> dogs = _dogRepo.GetDogsByOwnerId(ownerId);
+            /*List<Dog> dogs = _dogRepo.GetDogsByWalkId(Id);*/
 
             return View(dogs);
         }

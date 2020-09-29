@@ -45,10 +45,12 @@ namespace DogGo.Controllers
             Walker walker = _walkerRepo.GetWalkerById(id);
             List<Walk> walks = _walkRepo.GetWalksByWalkerId(walker.Id);
 
+
             WalkerProfileViewModel vm = new WalkerProfileViewModel()
             {
                 Walks = walks,
-                Walker = walker
+                Walker = walker/*,
+                Neighborhood = neighborhood*/
             };
 
             return View(vm);

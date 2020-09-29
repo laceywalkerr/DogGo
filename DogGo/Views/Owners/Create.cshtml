@@ -43,12 +43,14 @@
             <div class="form-group">
                 <label asp-for="Owner.Address" class="control-label"></label>
                 <input asp-for="Owner.Address" class="form-control" />
+                @*span is for an error message*@
                 <span asp-validation-for="Owner.Address" class="text-danger"></span>
             </div>
 
             @*Instead of having a text box, we modified the code below to have a select so we could then
                 iterate over all the neighborhoods and make an option for each one for the drop down*@
             <div class="form-group">
+                @*asp's are tag helpers*@
                 <label asp-for="Owner.NeighborhoodId" class="control-label"></label>
                @* // this builds the drop down neighborhood option, which is in the neighborhoodId property in Owner*@
                 <select asp-for="Owner.NeighborhoodId" class="form-control">
